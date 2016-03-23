@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Mobiscroll - Calendar - Demos and Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    
+    
+
+
+<link type="text/css" href="timer.css" rel="stylesheet"/>
+
+</head>
+<body class="ifr-body">
+    <div data-enhance="false">
+        
+
+<style type="text/css">
+    .collapsible-wrapper {
+        overflow: hidden;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+    }
+    .collapsible-t {
+        position:relative;
+    }
+    .collapsible-t:after
+    {
+        background: url('/Content/img/arrow-down.png') center center no-repeat;
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        left: 7px;
+        top: 50%;
+        margin-top: -3px;
+    }
+    .collapse .collapsible-t:after
+    {
+        background: url('/Content/img/arrow-closed.png') center center no-repeat;
+    }
+    .demo-phone {
+        margin:0;
+    }
+    .ifr-cont .demo-phone .demo-iframe {
+        background:none;
+    }
+</style>
+<div class="ifr-cont">
+
+    <div class="demo-options-cont collapsible-cont">
+        
+        <div id="collapse-toggle" class="title-cont">
+            <div class="title collapsible-t" style="padding-left:25px;">Options</div>
+            <div class="section-end"></div>
+        </div>
+        <div class="collapsible-wrapper">
+            <div class="collapsible dd-c">
+            <div class="dd">
+                <label for="theme">Theme</label>
+                <select name="theme" id="theme" class="settings f-dd">
+                    <optgroup label="Theme Builder">   
+                            <option value="membership" disabled>Upgrade Membership to build themes</option>
+                    </optgroup>
+                    <optgroup label="Mobiscroll Themes">
+                        <option value="ios7" selected>iOS7</option>
+                        <option value="ios">iOS</option>
+                        <option value="mobiscroll">Mobiscroll</option>
+                            <option value="bootstrap2">Bootstrap 2</option>
+                            <option value="bootstrap">Bootstrap 3</option>
+                        <option value="jqm13">jQuery Mobile v1.3.2</option>
+                        <option value="jqm14">jQuery Mobile v1.4.2</option>
+                        <option value="android-holo">Android Holo</option>
+                        <option value="android-holo light">Android Holo Light</option>
+                        <option value="android">Android</option>
+                        <option value="sense-ui">Sense UI</option>
+                        <option value="sense5">Sense 5</option>
+                        <option value="wp">Windows Phone</option>
+                        <option value="wp light">Windows Phone Light</option>
+                    </optgroup>
+                </select>
+
+                <div id="accent_c">
+                    <label for="accent">Accent</label>
+                    <select name="accent" id="accent" class="settings f-dd">
+                        <option value="none">None</option>
+                        <option value="lime">Lime</option>
+                        <option value="green">Green</option>
+                        <option value="emerald">Emerald</option>
+                        <option value="teal">Teal</option>
+                        <option value="cyan">Cyan</option>
+                        <option value="cobalt">Cobalt</option>
+                        <option value="indigo">Indigo</option>
+                        <option value="violet">Violet</option>
+                        <option value="pink">Pink</option>
+                        <option value="magenta">Magenta</option>
+                        <option value="crimson">Crimson</option>
+                        <option value="red">Red</option>
+                        <option value="orange">Orange</option>
+                        <option value="amber">Amber</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="brown">Brown</option>
+                        <option value="olive">Olive</option>
+                        <option value="steel">Steel</option>
+                        <option value="mauve">Mauve</option>
+                        <option value="sienna">Sienna</option>
+                    </select>
+                </div>
+                <div id="swatch_c">
+                    <label for="swatch">Swatch</label>
+                    <select name="swatch" id="swatch" class="settings f-dd">
+                        <option value="">Default</option>
+                        <option value="amelia">Amelia</option>
+                        <option value="cerulean">Cerulean</option>
+                        <option value="cosmo">Cosmo</option>
+                        <option value="cyborg">Cyborg</option>
+                        <option value="flatly">Flatly</option>
+                        <option value="journal">Journal</option>
+                        <option value="readable">Readable</option>
+                        <option value="simplex">Simplex</option>
+                        <option value="slate">Slate</option>
+                        <option value="spacelab">Spacelab</option>
+                        <option value="united">United</option>
+                    </select>
+                </div>
+                <div id="jqmcustom_c">
+                    <label for="jqmcustom">Theme variation</label>
+                    <select name="jqmcustom" id="jqmcustom" class="settings f-dd">
+                        <option value="">Default</option>
+                        <option value="flatui">Flat-UI</option>
+                        <option value="squareui">Square-UI</option>
+                    </select>
+                </div>
+            </div>
+                <div class="dd">
+                    <label for="display">Display</label>
+                    <select class="settings f-dd" id="display" name="display"><option value="inline">Inline</option>
+<option value="modal">Modal</option>
+<option value="bubble">Bubble</option>
+<option value="top">Top</option>
+<option value="bottom">Bottom</option>
+</select>
+
+                    <label for="animation">Animation</label>
+                    <select name="animation" id="animation" class="settings f-dd">
+                        <option value="">None</option>
+                        <option value="fade">Fade</option>
+                        <option value="flip">Flip</option>
+                        <option value="pop">Pop</option>
+                        <option value="swing">Swing</option>
+                        <option value="slidehorizontal">Slide Horizontally</option>
+                        <option value="slidevertical">Slide Vertically</option>
+                        <option value="slidedown">Slide Down</option>
+                        <option value="slideup">Slide Up</option>
+                    </select>
+                </div>
+                <div class="dd">
+                    <label for="mode">Mode</label>
+                    <select name="mode" id="mode" class="settings f-dd">
+                        <option value="scroller">Scroller</option>
+                        <option value="clickpick">Clickpick</option>
+                        <option value="mixed">Mixed</option>
+                    </select>
+                </div>
+                <div class="dd">
+                    <label for="language">Language</label>
+                    <select class="settings f-dd" id="language" name="language"><option selected="selected" value="en">English</option>
+<option value="cs">Cestina</option>
+<option value="zh">Chinese</option>
+<option value="de">Deutsch</option>
+<option value="en-UK">English (UK)</option>
+<option value="es">Espa&#241;ol</option>
+<option value="fr">Fran&#231;ais</option>
+<option value="it">Italiano</option>
+<option value="ja">Japanese</option>
+<option value="hu">Magyar</option>
+<option value="nl">Nederlands</option>
+<option value="no">Norsk</option>
+<option value="pl">Polski</option>
+<option value="pt-PT">Portugu&#234;s Europeu</option>
+<option value="pt-BR">Pt. Brasileiro</option>
+<option value="ro">Rom&#226;na</option>
+<option value="sk">Slovencina</option>
+<option value="sv">Svenska</option>
+<option value="tr">T&#252;rk&#231;e</option>
+<option value="ru">Русский</option>
+<option value="ru-UA">Русский (UA)</option>
+<option value="fa">فارسی</option>
+</select>
+                    <div class="ask-lang-cont" style=display:none;>
+                        <div>
+                            <div class="ask-lang-icon "></div>
+                            <span class="ask-txt">Looking for ?</span>
+                            <span class="ask-txt" id="ask-yes">Yes</span>
+                            <span class="ask-txt" id="ask-no">No</span>
+                        </div>
+                    </div>
+                </div>
+            <div class="clear"></div>  
+        </div>
+        </div>
+    </div>
+    <div class="demo-phone">
+        <div class="demo-iframe demo-calendartime demo-group-calendar" style="padding-top:40px;">
+            <input id="demo" placeholder="Please Select ..." />
+
+<code class="modal-addition"><button id="clear">Clear</button>
+<button id="show">Show</button></code>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var MS = MS || {};
+    MS.demopage = {};
+    MS.demopage.theme = "";
+    MS.demopage.main = false;
+    MS.demopage.name = 'calendartime';
+    MS.demopage.component = 'calendar';
+    MS.demo = {
+    preset: 'calendar',
+    controls: ['calendar', 'time'],
+    mode: 'mixed'
+};
+</script>
+
+
+    </div>
+<script type="text/javascript">
+    var _mfq = _mfq || [];
+    (function () {
+        var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+        mf.src = "timer.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
+</script>
+</body>
+</html>
