@@ -1,8 +1,10 @@
 var COB = {
     canvas: '',
     context: '',
-    width: window.innerWidth - 4, //910
-    height: window.innerHeight - 4, //540
+    width: 900,
+    height: 600,
+    // width: window.innerWidth - 4, //910
+    // height: window.innerHeight - 4, //540
     keysDown: {},
     keys: {
         UP: 38,
@@ -90,9 +92,15 @@ var COB = {
         COB.ranking = document.createElement('div');
         COB.ranking.classList.add('ranking');
         document.body.appendChild(COB.ranking);
+        
         var rankingTitle = document.createElement('h3');
         rankingTitle.innerHTML = 'Ranking';
         COB.ranking.appendChild(rankingTitle);
+
+        COB.supportMessage = document.createElement('div');
+        COB.supportMessage.innerHTML = 'Screen Size Required<br />' + COB.width + ' x ' + COB.height;
+        COB.supportMessage.classList.add('support-message', 'hide');
+        document.body.appendChild(COB.supportMessage);
 
         COB.canvas = document.createElement("canvas");
         COB.context = COB.canvas.getContext("2d");
@@ -114,6 +122,7 @@ var COB = {
         COB.player.position = COB.player.positions.DOWN;
         COB.player.image.onload = COB.imageLoaded(COB.player);
 
+        COB.resize();
         COB.socket = io.connect("http://localhost", {port: 20000, transports: ["websocket"]});
         COB.setEventHandlers();
         COB.update();
@@ -149,8 +158,17 @@ var COB = {
         delete COB.keysDown[e.keyCode];
     },
     resize: function() {
-        COB.canvas.width = window.innerWidth - 4;
-        COB.canvas.height = window.innerHeight - 4;
+        if (window.innerWidth < COB.width || window.innerHeight < COB.height) {
+            COB.canvas.classList.add('hide');
+            COB.ranking.classList.add('hide');
+            COB.supportMessage.classList.remove('hide');
+        } else {
+            COB.canvas.classList.remove('hide');
+            COB.ranking.classList.remove('hide');
+            COB.supportMessage.classList.add('hide');
+        }
+        // COB.canvas.width = window.innerWidth - 4;
+        // COB.canvas.height = window.innerHeight - 4;
     },
     socketConnected: function() {
         console.log("Connected to socket server");
