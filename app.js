@@ -1,6 +1,3 @@
-var util = require("util"),
-    io = require("socket.io");
-
 var socket,
     players = [],
     ball = {};
@@ -10,19 +7,27 @@ function getRandom(min, max) {
 };
 
 function init() {
-    ball.x = getRandom(100, 910 * 0.8);
-    ball.y = getRandom(50, 540 * 0.6);
+    var express = require('express'),
+        app = express(),
+        server = require('http').createServer(app),
+        io = require('socket.io');
 
-    socket = io.listen(3000);
+    app.use(express.static(__dirname + '/public'));
+
+    server.listen(20000);
+    socket = io.listen(server);
     socket.configure(function() {
         socket.set("transports", ["websocket"]);
         socket.set("log level", 2);
     });
     socket.sockets.on("connection", onSocketConnection);
+
+    ball.x = getRandom(100, 910 * 0.8);
+    ball.y = getRandom(50, 540 * 0.6);
 };
 
 function onSocketConnection(client) {
-    util.log("New player has connected: " + client.id);
+    console.log("New player has connected: " + client.id);
     client.emit("new ball", {
         x: ball.x,
         y: ball.y
@@ -34,11 +39,11 @@ function onSocketConnection(client) {
 };
 
 function onClientDisconnect() {
-    util.log("Player has disconnected: " + this.id);
+    console.log("Player has disconnected: " + this.id);
 
     var playerIndex = getPlayerIndexById(this.id);
     if (playerIndex === false) {
-        util.log("Player not found: " + this.id);
+        console.log("Player not found: " + this.id);
         return;
     };
     players.splice(playerIndex, 1);
@@ -88,7 +93,7 @@ function onNewPlayer(data) {
 function onMovePlayer(data) {
     var playerIndex = getPlayerIndexById(this.id);
     if (playerIndex === false) {
-        util.log("Player not found: " + this.id);
+        console.log("Player not found: " + this.id);
         return;
     };
     var existingPlayer = players[playerIndex];
@@ -114,7 +119,7 @@ function getPlayerIndexById(id) {
 function onBallCaught() {
     var playerIndex = getPlayerIndexById(this.id);
     if (playerIndex === false) {
-        util.log("Player not found: " + this.id);
+        console.log("Player not found: " + this.id);
         return;
     };
     ++players[playerIndex].ballsCaught;

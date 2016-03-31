@@ -114,7 +114,7 @@ var COB = {
         COB.player.position = COB.player.positions.DOWN;
         COB.player.image.onload = COB.imageLoaded(COB.player);
 
-        COB.socket = io.connect("http://localhost", {port: 3000, transports: ["websocket"]});
+        COB.socket = io.connect("http://localhost", {port: 20000, transports: ["websocket"]});
         COB.setEventHandlers();
         COB.update();
     },
