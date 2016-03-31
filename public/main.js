@@ -171,7 +171,6 @@ var COB = {
         // COB.canvas.height = window.innerHeight - 4;
     },
     socketConnected: function() {
-        console.log("Connected to socket server");
         COB.socket.emit("new player", {
             imageColumn: COB.player.imageColumn,
             imageRow: COB.player.imageRow,
@@ -181,10 +180,8 @@ var COB = {
         });
     },
     socketDisconnect: function() {
-        console.log("Disconnected from socket server");
     },
     newPlayer: function(data) {
-        console.log("New player connected: " + data.id);
         var newPlayer = {};
         newPlayer.image = new Image();
         newPlayer.image.src = COB.player.url;
@@ -204,7 +201,6 @@ var COB = {
     movePlayer: function(data) {
         var playerIndex = COB.getPlayerIndexById(data.id);
         if (playerIndex === false) {
-            console.log("Player not found: " + data.id);
             return;
         }
         COB.players[playerIndex].x = data.x;
@@ -214,7 +210,6 @@ var COB = {
     removePlayer: function(data) {
         var playerIndex = COB.getPlayerIndexById(data.id);
         if (playerIndex === false) {
-            console.log("Player not found: " + data.id);
             return;
         }
         COB.players.splice(playerIndex, 1);
@@ -260,7 +255,6 @@ var COB = {
         if (data.id) {
             var playerIndex = COB.getPlayerIndexById(data.id);
             if (playerIndex === false) {
-                console.log("Player not found: " + data.id);
             } else {
                 ++COB.players[playerIndex].ballsCaught;
             }
