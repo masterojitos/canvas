@@ -1,6 +1,8 @@
 var socket,
     players = [],
-    ball = {};
+    ball = {},
+    lastsecond = null,
+    newsecond = null;
 
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -117,12 +119,19 @@ function getPlayerIndexById(id) {
 };
 
 function onBallCaught() {
+    newsecond = new Date().getSeconds();
+    if (lastsecond === 59 && newsecond === 0) newsecond = 60;
+    if (lastsecond !== null && (lastsecond === newsecond || lastsecond === newsecond - 1)) return false;
+
     var playerIndex = getPlayerIndexById(this.id);
     if (playerIndex === false) {
         console.log("Player not found: " + this.id);
         return;
     };
     ++players[playerIndex].ballsCaught;
+
+    if (lastsecond === 59 && newsecond === 60) newsecond = 0;
+    lastsecond = newsecond;
 
     ball.x = getRandom(100, 910 * 0.8);
     ball.y = getRandom(50, 540 * 0.6);

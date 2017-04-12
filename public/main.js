@@ -66,7 +66,7 @@ var COB = {
         imageRow: 0,
         imageX: 0,
         imageY: 0,
-        ballsCaught: 0
+        ballsCaught: -1
     },
     players: [],
     socket: '',
@@ -79,7 +79,6 @@ var COB = {
         image: '',
         ready: 0
     },
-    catchNewBall: false,
     requestAnimationFrame: window.requestAnimationFrame || 
         window.webkitRequestAnimationFrame || 
         window.mozRequestAnimationFrame || 
@@ -308,6 +307,8 @@ var COB = {
             } else {
                 ++COB.players[playerIndex].ballsCaught;
             }
+        } else {
+            ++COB.player.ballsCaught;
         }
 
         COB.ball.image = new Image();
@@ -351,9 +352,7 @@ var COB = {
             position = 'RIGHT';
         }
 
-        if (!COB.catchNewBall && COB.player.x <= (COB.ball.x + COB.ball.width) && COB.ball.x <= (COB.player.x + COB.ball.width) && COB.player.y <= (COB.ball.y + COB.ball.height) && COB.ball.y <= (COB.player.y + COB.ball.height)) {
-            COB.catchNewBall = true;
-            ++COB.player.ballsCaught;
+        if (COB.player.x <= (COB.ball.x + COB.ball.width) && COB.ball.x <= (COB.player.x + COB.ball.width) && COB.player.y <= (COB.ball.y + COB.ball.height) && COB.ball.y <= (COB.player.y + COB.ball.height)) {
             COB.socket.emit("new ball");
         }
 
