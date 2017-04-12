@@ -79,6 +79,7 @@ var COB = {
         image: '',
         ready: 0
     },
+    catchNewBall: false,
     requestAnimationFrame: window.requestAnimationFrame || 
         window.webkitRequestAnimationFrame || 
         window.mozRequestAnimationFrame || 
@@ -350,7 +351,8 @@ var COB = {
             position = 'RIGHT';
         }
 
-        if (COB.player.x <= (COB.ball.x + COB.ball.width) && COB.ball.x <= (COB.player.x + COB.ball.width) && COB.player.y <= (COB.ball.y + COB.ball.height) && COB.ball.y <= (COB.player.y + COB.ball.height)) {
+        if (!COB.catchNewBall && COB.player.x <= (COB.ball.x + COB.ball.width) && COB.ball.x <= (COB.player.x + COB.ball.width) && COB.player.y <= (COB.ball.y + COB.ball.height) && COB.ball.y <= (COB.player.y + COB.ball.height)) {
+            COB.catchNewBall = true;
             ++COB.player.ballsCaught;
             COB.socket.emit("new ball");
         }
@@ -378,6 +380,7 @@ var COB = {
         }
 
         if (COB.ball.ready) {
+            COB.catchNewBall = false;
             COB.context.drawImage(COB.ball.image, COB.ball.x, COB.ball.y);
         }
     }
