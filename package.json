@@ -1,11 +1,15 @@
 {
   "name": "pets-hunters",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "masterojitos",
   "description": "Dogs and cats have to catch balls very fast and be the best.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
-      "express": "4.13.4",
-      "socket.io": "0.9.17"
+    "express": "4.13.4",
+    "socket.io": "0.9.17"
   },
   "engines": {
     "node": "0.10.35"
