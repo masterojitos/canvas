@@ -123,6 +123,7 @@ var COB = {
         COB.player.image.onload = COB.imageLoaded(COB.player);
 
         COB.resize();
+        // COB.socket = io("http://localhost", {port: 20000});
         COB.socket = io.connect("http://localhost", {port: 20000, transports: ["websocket"]});
         COB.setEventHandlers();
         COB.update();
@@ -167,8 +168,56 @@ var COB = {
             COB.ranking.classList.remove('hide');
             COB.supportMessage.classList.add('hide');
         }
+        
+        // COB.canvas.style.width = (window.innerWidth - 4) + 'px';
+        // COB.canvas.style.height = (window.innerHeight - 4) + 'px';
         // COB.canvas.width = window.innerWidth - 4;
         // COB.canvas.height = window.innerHeight - 4;
+        /*var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = COB.context.webkitBackingStorePixelRatio ||
+                            COB.context.mozBackingStorePixelRatio ||
+                            COB.context.msBackingStorePixelRatio ||
+                            COB.context.oBackingStorePixelRatio ||
+                            COB.context.backingStorePixelRatio || 1,
+            ratio = devicePixelRatio / backingStoreRatio;
+            console.log(devicePixelRatio, backingStoreRatio)
+        if (devicePixelRatio !== backingStoreRatio) {
+            var oldWidth = COB.canvas.width;
+            var oldHeight = COB.canvas.height;
+
+            COB.canvas.width = oldWidth * ratio;
+            COB.canvas.height = oldHeight * ratio;
+
+            COB.canvas.style.width = oldWidth + 'px';
+            COB.canvas.style.height = oldHeight + 'px';
+
+            COB.context.scale(ratio, ratio);
+        }*/
+
+        //evaluar si es mas alto la web o el canvas
+        //crear un ratio en cada lado para poder achicarlo
+        /*var currentWidth = COB.canvas.width;
+        var currentHeight = COB.canvas.height;
+        if (window.innerWidth < currentWidth) {
+            ratioWidth = window.innerWidth / currentWidth;
+            newHeight = currentHeight * ratioWidth;
+            ratioHeight = window.innerHeight / newHeight;
+        }
+        if (window.innerHeight < currentHeight) {
+            ratioHeight = window.innerHeight / currentHeight;
+            ratioWidth = currentWidth * ratioHeight;
+        }
+
+        console.log("h", COB.canvas.height);
+        console.log("h2", window.innerHeight);
+        var ratio = COB.canvas.width / COB.canvas.height;
+        var oldWidth = COB.canvas.width;
+        var oldHeight = COB.canvas.height;
+        COB.canvas.width = oldWidth * ratio;
+        COB.canvas.height = oldHeight * ratio;
+        COB.canvas.style.width = oldWidth + 'px';
+        COB.canvas.style.height = oldHeight + 'px';
+        COB.context.scale(ratio, ratio);*/
     },
     socketConnected: function() {
         COB.socket.emit("new player", {
@@ -278,7 +327,7 @@ var COB = {
             position = 'UP';
         }
         if (COB.keys.DOWN in COB.keysDown) {
-            if (COB.player.y + COB.player.positions.DOWN.height + COB.speed <= COB.height) {
+            if (COB.player.y + COB.player.positions.DOWN.height + COB.speed <= COB.canvas.height) {
                 if (COB.player.y + COB.player.positions.DOWN.height <= 640) {
                     COB.player.y += COB.speed;
                 }
@@ -294,7 +343,7 @@ var COB = {
             position = 'LEFT';
         }
         if (COB.keys.RIGHT in COB.keysDown) {
-            if (COB.player.x + COB.player.positions.RIGHT.width + COB.speed <= COB.width) {
+            if (COB.player.x + COB.player.positions.RIGHT.width + COB.speed <= COB.canvas.width) {
                 COB.player.x += COB.speed;
             }
             COB.player.position = COB.player.positions.RIGHT;
