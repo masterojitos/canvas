@@ -3,9 +3,9 @@
   "version": "0.0.2",
   "author": "masterojitos",
   "description": "Dogs and cats have to catch balls very fast and be the best.",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "4.13.4",
